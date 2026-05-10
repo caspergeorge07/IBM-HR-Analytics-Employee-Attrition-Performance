@@ -19,7 +19,6 @@ Thumbs.db
 # data/raw/
 
 # Model files
-*.pkl
 *.joblib
 
 # VS Code settings
