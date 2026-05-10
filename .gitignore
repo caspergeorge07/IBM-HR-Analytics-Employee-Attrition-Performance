@@ -1,0 +1,29 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+venv/
+env/
+
+# Mac files
+.DS_Store
+
+# Windows files
+Thumbs.db
+
+# Large datasets if needed
+# data/raw/
+
+# Model files
+*.pkl
+*.joblib
+
+# VS Code settings
+.vscode/
+
+# PyCharm
+.idea/
