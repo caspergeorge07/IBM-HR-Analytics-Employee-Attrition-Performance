@@ -1,216 +1,579 @@
-# IBM HR Analytics Employee Attrition — TS Academy Capstone Project
+# IBM HR Analytics Employee Attrition & Workforce Intelligence Project
 
-## Project Overview
-
-This project investigates employee attrition using the IBM HR Analytics Employee Attrition dataset. The company wants to understand the patterns behind employee turnover, segment employees into meaningful groups, and build predictive models that can identify employees who may be at risk of leaving.
-
-The project follows a full analytics and machine learning pipeline:
-
-1. Data loading and SQL-based exploration
-2. Exploratory data analysis and data quality checks
-3. Feature engineering, encoding, and scaling
-4. K-Means clustering and employee segmentation
-5. Supervised classification modelling
-6. Imbalance handling using class weighting, threshold tuning, and SMOTE
-7. Clustering-classification tie-in
-8. Business recommendations and final conclusions
+## End-to-End HR Analytics, Workforce Segmentation, and Attrition Prediction
 
 ---
 
-## Business Problem
+# Project Overview
 
-Employee attrition can increase recruitment costs, reduce productivity, disrupt team performance, and lead to the loss of organisational knowledge. This project aims to help HR teams move from reactive retention management to proactive workforce risk monitoring.
+Employee attrition is one of the most expensive workforce challenges organisations face. High employee turnover increases:
 
-The core questions answered are:
+- recruitment costs,
+- onboarding costs,
+- productivity loss,
+- operational disruption,
+- and knowledge drain.
 
-- Which employee characteristics are associated with attrition?
-- Can employees be segmented into meaningful workforce personas?
-- Which employee groups have the highest attrition risk?
-- Which model should be used to predict attrition?
-- What practical retention actions should HR prioritise?
+The goal of this project was to build a complete workforce analytics pipeline capable of:
 
----
+1. Understanding patterns behind employee attrition  
+2. Identifying high-risk employee groups  
+3. Segmenting employees into workforce personas  
+4. Predicting employee attrition using machine learning  
+5. Improving minority class detection using imbalance handling techniques  
+6. Delivering actionable HR retention recommendations  
 
-## Dataset
-
-**Dataset:** IBM HR Analytics Employee Attrition Dataset  
-**Target variable:** `Attrition`  
-**Positive class:** `Attrition = 1`, employee left  
-**Negative class:** `Attrition = 0`, employee stayed
-
-The dataset includes employee information such as income, job role, department, overtime, satisfaction scores, years at company, total working years, and other HR-related variables.
+This project was developed as part of the TS Academy Capstone Project using the IBM HR Analytics Employee Attrition dataset.
 
 ---
 
-## Repository Structure
+# Business Problem
+
+The organisation wants to proactively identify employees who are at risk of leaving before resignation occurs.
+
+Traditional HR reporting often explains attrition after employees have already left. This project aims to shift workforce analytics from:
+
+- reactive HR reporting
+
+to:
+
+- proactive workforce intelligence.
+
+The final solution combines:
+
+- exploratory analytics,
+- clustering,
+- predictive modelling,
+- imbalance handling,
+- and business storytelling
+
+into a complete employee attrition intelligence system.
+
+---
+
+# Project Objectives
+
+The main objectives of this project were to:
+
+- Perform exploratory data analysis on employee workforce data
+- Engineer meaningful workforce-related features
+- Segment employees into workforce personas using clustering
+- Predict employee attrition using classification models
+- Improve minority class detection using imbalance handling techniques
+- Compare multiple machine learning models
+- Connect clustering and classification insights together
+- Produce strategic HR recommendations
+- Deliver a portfolio-ready business analytics solution
+
+---
+
+# Dataset Information
+
+## Dataset Used
+
+- IBM HR Analytics Employee Attrition Dataset
+
+## Target Variable
+
+- Attrition
+  - Yes = employee left
+  - No = employee stayed
+
+## Dataset Features Included
+
+- Demographics
+- Compensation information
+- Career progression
+- Work-life balance
+- Satisfaction metrics
+- Job role information
+- Overtime exposure
+- Business travel behaviour
+- Organisational tenure
+
+---
+
+# Tools and Technologies
+
+## Programming & Analysis
+
+- Python
+- Jupyter Notebook
+- SQLite
+
+## Data Manipulation
+
+- Pandas
+- NumPy
+
+## Visualisation
+
+- Matplotlib
+- Seaborn
+
+## Machine Learning
+
+- Scikit-learn
+- XGBoost
+- Imbalanced-learn (SMOTE)
+
+## Version Control
+
+- Git
+- GitHub
+
+---
+
+# Repository Structure
 
 ```text
-.
+IBM-HR-Analytics-Employee-Attrition/
+│
 ├── data/
 │   ├── raw/
-│   │   └── WA_Fn-UseC_-HR-Employee-Attrition.csv
 │   └── processed/
-│       ├── hr_attrition_clean_day1.csv
-│       ├── hr_attrition_feature_engineered.csv
-│       └── hr_attrition_clustered.csv
+│
+├── notebooks/
+│   └── IBM_HR_Attrition_Project.ipynb
+│
+├── reports/
+│   ├── classification_model_comparison.csv
+│   └── cluster_attrition_summary.csv
 │
 ├── models/
 │   ├── baseline_logistic_regression_model.pkl
 │   └── baseline_xgboost_model.pkl
 │
-├── notebooks/
-│   ├── 01_data_foundation.ipynb
-│   ├── 02_feature_engineering.ipynb
-│   ├── 03_clustering.ipynb
-│   ├── 04_classification.ipynb
-│   ├── 05_imbalance_handling.ipynb
-│   └── 06_final_capstone.ipynb
+├── images/
 │
-├── reports/
-│   └── classification_model_comparison.csv
-│
+├── README.md
 ├── requirements.txt
-├── .gitignore
-└── README.md
+└── .gitignore
 ```
 
 ---
 
-## Methodology
+# Project Workflow
 
-### 1. Data Foundation
+The project followed a full end-to-end data science workflow.
 
-The dataset was loaded, inspected, and pushed into SQLite for SQL-based exploration. Data quality checks were performed for missing values, duplicates, constant columns, target distribution, and early attrition patterns.
+## 1. Data Foundation
 
-### 2. Feature Engineering and Encoding
+Performed:
 
-New business-driven features were created to improve interpretability and modelling performance, including:
+- data loading,
+- SQL integration,
+- exploratory data analysis,
+- missing value inspection,
+- duplicate checks,
+- data quality assessment.
 
-- Age groups
-- Income bands
-- Years-at-company groups
-- Overtime risk indicator
-- Work-life satisfaction score
-- Income growth potential
+### SQL Queries Included
 
-Categorical variables were encoded and numerical variables were scaled for clustering and machine learning.
-
-### 3. Clustering Analysis
-
-K-Means clustering was used to segment employees into personas. K values from 2 to 10 were tested using elbow and silhouette analysis. K = 5 was selected because it provided the strongest balance between interpretability and business actionability.
-
-Final personas included:
-
-- Early-Career Flight Risk Employees
-- Compensation-Sensitive Retention Risk Employees
-- Moderately Stable Mid-Career Employees
-- Stable Experienced Core Employees
-- Stable Long-Tenure Employees
-
-### 4. Classification Modelling
-
-Five classification models were trained and compared:
-
-- Logistic Regression
-- Decision Tree
-- Random Forest
-- Gradient Boosting
-- XGBoost
-
-Models were evaluated using accuracy, precision, recall, F1 score, and ROC-AUC.
-
-### 5. Imbalance Handling
-
-Because attrition was the minority class, imbalance handling techniques were applied:
-
-- Majority-class baseline comparison
-- Class weighting
-- Threshold tuning
-- SMOTE oversampling
-
-The focus was on improving recall and F1 score for employees who actually left.
-
-### 6. Tie-In Analysis
-
-Cluster labels were connected back to classification insights to understand which employee personas were most likely to leave and why. This helped translate model outputs into actionable HR retention strategies.
+- Attrition by department
+- Average income by job role
+- Overtime distribution analysis
 
 ---
+
+## 2. Feature Engineering
+
+Created business-focused engineered features including:
+
+- Age Groups
+- Income Bands
+- Overtime Risk Indicators
+- Work-Life Satisfaction Score
+- Income Growth Potential
+
+The feature engineering stage helped transform raw HR variables into more interpretable workforce intelligence metrics.
+
+---
+
+## 3. Employee Segmentation (K-Means Clustering)
+
+Employees were segmented into workforce personas using:
+
+- K-Means clustering
+- Elbow Method
+- Silhouette Scores
+- PCA visualisation
+
+### Final Clusters Included
+
+| Cluster Persona | Attrition Risk |
+|---|---|
+| Early-Career Flight Risk Employees | Very High |
+| Compensation-Sensitive Retention Risk Employees | High |
+| Moderately Stable Mid-Career Employees | Medium |
+| Stable Long-Tenure Employees | Low |
+| Stable Experienced Core Employees | Very Low |
+
+---
+
+# Clustering Insights
+
+The clustering analysis revealed that attrition risk is not evenly distributed across the workforce.
 
 ## Key Findings
 
-- Attrition was not evenly distributed across the workforce.
-- Early-career employees had the highest attrition risk.
-- Compensation-sensitive employees represented the largest workforce risk due to their size and elevated attrition rate.
-- Stable experienced employees had the lowest attrition risk.
-- Important predictors included income, overtime, total working years, age, tenure, business travel, and satisfaction-related features.
-- Logistic Regression provided the strongest baseline balance between performance and interpretability.
-- SMOTE improved the balance between recall and precision for attrition detection.
+### Early-Career Flight Risk Employees
+
+- Highest attrition rate (~40%)
+- Lowest average monthly income
+- Shortest organisational tenure
+- High vulnerability to external opportunities
+
+### Stable Experienced Core Employees
+
+- Lowest attrition rate (~7%)
+- Highest compensation levels
+- Longest organisational tenure
+- Strong organisational attachment
+
+### Compensation-Sensitive Employees
+
+- Large workforce segment
+- Elevated attrition risk
+- Compensation-related vulnerability
+
+These findings demonstrated that workforce segmentation provides strategic insight beyond simple prediction.
 
 ---
 
-## Final Model Recommendation
+# Classification Modelling
 
-The recommended production approach is a Logistic Regression model enhanced with imbalance handling.
+Multiple classification models were trained and evaluated.
 
-This model was selected because it provides:
+## Models Tested
 
-- Strong interpretability for HR stakeholders
-- Competitive ROC-AUC performance
-- Improved recall after imbalance handling
-- Clear business explanation through coefficients
-- Practical suitability for employee risk monitoring
+1. Logistic Regression
+2. Decision Tree
+3. Random Forest
+4. Gradient Boosting
+5. XGBoost
 
----
+## Evaluation Metrics
 
-## Business Recommendations
+Models were evaluated using:
 
-HR should prioritise:
-
-1. **Early-career retention** through improved onboarding, mentoring, and career development.
-2. **Compensation reviews** for lower-income and compensation-sensitive employee segments.
-3. **Overtime monitoring** to reduce burnout and workload pressure.
-4. **Career progression transparency** to reduce stagnation and improve retention.
-5. **Persona-based interventions** rather than generic company-wide retention strategies.
+- Accuracy
+- Precision
+- Recall
+- F1 Score
+- ROC-AUC
 
 ---
 
-## Ethical Considerations
+# Baseline Classification Results
 
-Attrition prediction should support employee wellbeing and workforce planning. It should not be used to penalise employees. Any real-world deployment should include:
+| Model | ROC-AUC | Recall | F1 Score |
+|---|---|---|---|
+| Logistic Regression | 0.83 | 0.34 | 0.45 |
+| Gradient Boosting | 0.79 | Moderate | Moderate |
+| Random Forest | 0.78 | Low | Moderate |
+| XGBoost | 0.76 | Moderate | Moderate |
+| Decision Tree | 0.58 | Weak | Weak |
 
-- Human oversight
-- Bias monitoring
-- Employee privacy protection
-- Transparent use of predictions
-- Fairness checks across demographic groups
+## Key Finding
+
+Logistic Regression achieved the strongest overall balance between:
+
+- predictive performance,
+- recall,
+- interpretability,
+- and business transparency.
 
 ---
 
-## How to Run the Project
+# Feature Importance Insights
 
-1. Clone the repository.
-2. Create a virtual environment.
-3. Install dependencies:
+The most important attrition drivers across models included:
+
+- Overtime
+- Monthly Income
+- Total Working Years
+- Years At Company
+- Business Travel
+- Work-Life Balance
+- Job Satisfaction
+- Career Stage
+
+## Business Interpretation
+
+Employees were more likely to leave when they experienced:
+
+- lower compensation,
+- excessive overtime,
+- weaker organisational attachment,
+- limited progression,
+- and lower satisfaction.
+
+---
+
+# Imbalance Handling
+
+The dataset contained a significant class imbalance problem:
+
+- Employees who stayed: ~84%
+- Employees who left: ~16%
+
+To improve minority class detection, the following techniques were applied:
+
+- Class Weighting
+- Threshold Tuning
+- SMOTE Oversampling
+
+---
+
+# Imbalance Handling Results
+
+| Strategy | Precision | Recall | F1 Score |
+|---|---|---|---|
+| Baseline Logistic Regression | 0.67 | 0.34 | 0.45 |
+| Class Weighted Logistic Regression | 0.38 | 0.68 | 0.49 |
+| SMOTE Logistic Regression | 0.40 | 0.66 | 0.50 |
+
+## Key Finding
+
+SMOTE produced the strongest balance between:
+
+- recall,
+- precision,
+- and F1 score.
+
+This significantly improved the model's ability to identify employees at risk of leaving.
+
+---
+
+# Precision vs Recall Tradeoff
+
+A major challenge in attrition prediction is balancing:
+
+- identifying employees likely to leave (recall),
+- while avoiding excessive false alarms (precision).
+
+From a business perspective:
+
+- false negatives are costly because employees leave unexpectedly,
+- while false positives may create unnecessary HR intervention effort.
+
+The project prioritised recall and F1 score because proactive retention planning is more valuable than maximising accuracy alone.
+
+---
+
+# Clustering and Classification Tie-In
+
+One of the strongest aspects of this project was integrating:
+
+- clustering analysis,
+- and classification modelling.
+
+## Classification Answered
+
+> "Who is likely to leave?"
+
+## Clustering Answered
+
+> "What type of employees are likely to leave?"
+
+This created a more actionable workforce intelligence system capable of supporting:
+
+- targeted HR interventions,
+- strategic workforce planning,
+- and retention prioritisation.
+
+---
+
+# Business Recommendations
+
+## 1. Prioritise Early-Career Retention
+
+High-risk early-career employees require:
+
+- mentorship programmes,
+- clearer career pathways,
+- stronger onboarding support,
+- and compensation review.
+
+---
+
+## 2. Reduce Overtime Risk
+
+Overtime consistently appeared as one of the strongest attrition predictors.
+
+HR should:
+
+- monitor workload exposure,
+- reduce burnout risk,
+- and improve work-life balance.
+
+---
+
+## 3. Improve Compensation Transparency
+
+Compensation-sensitive employee groups demonstrated elevated turnover risk.
+
+Recommendations:
+
+- salary benchmarking,
+- reward structure review,
+- promotion transparency.
+
+---
+
+## 4. Strengthen Career Development
+
+Employees with weaker organisational attachment showed higher attrition risk.
+
+HR should:
+
+- improve internal mobility,
+- provide growth pathways,
+- and strengthen employee engagement.
+
+---
+
+# Ethical Considerations
+
+Employee attrition models should be implemented responsibly.
+
+Important considerations include:
+
+- employee privacy,
+- fairness,
+- bias monitoring,
+- transparency,
+- and human oversight.
+
+The model should support HR decision-making rather than replace human judgement.
+
+---
+
+# Project Limitations
+
+## Dataset Limitations
+
+- The IBM HR dataset is synthetic.
+- No employee sentiment data was available.
+- No resignation reasons were included.
+- Temporal workforce history was limited.
+
+## Modelling Limitations
+
+- Advanced hyperparameter tuning was limited.
+- Deep learning models were not explored.
+- External labour market variables were unavailable.
+
+---
+
+# Future Improvements
+
+Potential future improvements include:
+
+- SHAP explainability analysis
+- Real-time dashboard deployment
+- Survival analysis
+- Deep learning experimentation
+- Employee sentiment integration
+- Power BI or Streamlit deployment
+- Real-time HR monitoring systems
+
+---
+
+# Final Business Conclusion
+
+This project demonstrated how machine learning and workforce analytics can support strategic HR decision-making.
+
+By combining:
+
+- clustering,
+- predictive modelling,
+- imbalance handling,
+- and business interpretation,
+
+this project successfully identified:
+
+- which employees are likely to leave,
+- what type of employees are most vulnerable,
+- and what HR interventions should be prioritised.
+
+The final solution transformed raw HR data into a practical workforce intelligence system capable of supporting:
+
+- proactive employee retention,
+- workforce segmentation,
+- targeted intervention planning,
+- and data-driven HR strategy.
+
+---
+
+# How to Run the Project
+
+## 1. Clone the Repository
+
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+```
+
+## 2. Navigate Into the Project
+
+```bash
+cd IBM-HR-Analytics-Employee-Attrition
+```
+
+## 3. Install Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Run the notebooks in order from the `notebooks/` folder:
+## 4. Launch Jupyter Notebook
 
-```text
-01_data_foundation.ipynb
-02_feature_engineering.ipynb
-03_clustering.ipynb
-04_classification.ipynb
-05_imbalance_handling.ipynb
-06_final_capstone.ipynb
+```bash
+jupyter notebook
 ```
-
-The notebooks use relative paths and should be run from inside the `notebooks/` directory.
 
 ---
 
-## Portfolio Summary
+# Requirements
 
-This project demonstrates a complete end-to-end data analytics and machine learning workflow for HR attrition prediction. It combines SQL, exploratory analysis, feature engineering, clustering, classification, imbalance handling, model interpretation, and business recommendations into a single portfolio-ready case study.
+Main dependencies include:
+
+```text
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+xgboost
+imbalanced-learn
+jupyter
+```
+
+---
+
+# Author
+
+Ndubuaku George Ekwueme
+
+MSc Data Science | Data Analyst | Machine Learning Enthusiast
+
+Focused on:
+
+- workforce analytics,
+- predictive modelling,
+- business intelligence,
+- and applied machine learning.
+
+---
+
+# Portfolio Highlights
+
+This project demonstrates:
+
+- end-to-end machine learning workflow,
+- business storytelling,
+- clustering and classification integration,
+- imbalance handling,
+- strategic HR analytics,
+- and portfolio-ready analytical communication.
