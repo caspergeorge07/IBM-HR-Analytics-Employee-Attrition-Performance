@@ -577,3 +577,8 @@ This project demonstrates:
 - imbalance handling,
 - strategic HR analytics,
 - and portfolio-ready analytical communication.
+
+## Additional Documentation
+
+- Technical walkthrough and meeting preparation document:
+  - `reports/IBM_HR_Attrition_Project_Technical_Walkthrough.docx`
